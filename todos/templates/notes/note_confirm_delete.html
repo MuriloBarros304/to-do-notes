@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Excluir Nota{% endblock page_title %}
+
+{% block content %}
+    <h1>Excluir Nota</h1>
+    <p>Tem certeza que deseja excluir a nota "{{ note.title }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock content %}
