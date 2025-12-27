@@ -14,14 +14,32 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'todo_list' %}">
-                                <i class="bi bi-check2-square"></i> Tarefas
-                            </a>
+                            <a class="nav-link" href="{% url 'todo_list' %}">Tarefas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'note_list' %}"><i class="bi bi-journal-text"></i> Notas
-                            </a>
+                            <a class="nav-link" href="{% url 'note_list' %}">Notas</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item me-3">
+                                <span class="navbar-text text-white">
+                                    Olá, <strong>{{ user.username }}</strong>
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <form action="{% url 'logout' %}" method="post" class="d-flex">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-light btn-sm">
+                                        Sair <i class="bi bi-box-arrow-left"></i>
+                                    </button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
