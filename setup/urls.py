@@ -6,6 +6,8 @@ from todos.views import TodoListView, \
 from notes.views import NoteDetailView, NoteListView, \
     NoteCreateView, NoteUpdateView, NoteDeleteView
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
+from .views import SignUpView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -21,5 +23,9 @@ urlpatterns = [
     path("notes/create", NoteCreateView.as_view(), name="note_create"),
     path("notes/update/<int:pk>", NoteUpdateView.as_view(), name="note_update"),
     path("notes/delete/<int:pk>", NoteDeleteView.as_view(), name="note_delete"),
-    path('notes/<int:pk>/', NoteDetailView.as_view(), name='note_detail')
+    path('notes/<int:pk>/', NoteDetailView.as_view(), name='note_detail'),
+
+    path('login', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('signup', SignUpView.as_view(), name='signup'),
 ]

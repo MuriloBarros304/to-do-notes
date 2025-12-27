@@ -1,28 +1,34 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Todo
 
-# Todos
 
-class TodoListView(ListView):
+class TodoListView(LoginRequiredMixin, ListView):
     model = Todo
+    def get_queryset(self):
+        return Todo.objects.for_user(self.request.user) # type: ignore
 
 
-class TodoCreateView(CreateView):
+class TodoCreateView(LoginRequiredMixin, CreateView):
+    model = Todo
+    fields = ["title", "deadline"]
+    success_url = reverse_lazy("todo_list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class TodoUpdateView(LoginRequiredMixin, UpdateView):
     model = Todo
     fields = ["title", "deadline"]
     success_url = reverse_lazy("todo_list")
 
 
-class TodoUpdateView(UpdateView):
-    model = Todo
-    fields = ["title", "deadline"]
-    success_url = reverse_lazy("todo_list")
-
-
-class TodoDeleteView(DeleteView):
+class TodoDeleteView(LoginRequiredMixin,DeleteView):
     model = Todo
     success_url = reverse_lazy("todo_list")
 
