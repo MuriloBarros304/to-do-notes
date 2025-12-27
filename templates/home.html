@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block page_title %}To Do Notes - Home{% endblock page_title %}
+
+{% block content %}
+    <style>
+        .hero-section { background-color: #f8f9fa; border-radius: 1rem; }
+        .feature-icon { font-size: 2rem; color: #0d6efd; margin-bottom: 1rem; }
+    </style>
+
+    <div class="py-5">
+        
+        <div class="p-5 mb-4 rounded-3 hero-section text-center">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Bem-vindo ao To Do Notes</h1>
+                <p class="col-md-8 fs-4 mx-auto">
+                    Um sistema simples e eficiente para organizar sua rotina, desenvolvido com <strong>Django</strong> e estilizado com <strong>Bootstrap</strong>.
+                </p>
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a href="{% url 'todo_list' %}" class="btn btn-outline-secondary btn-lg px-4">
+                        <i class="bi bi-check2-square"></i> Minhas Tarefas
+                    </a>
+                    <a href="{% url 'note_list' %}" class="btn btn-outline-primary btn-lg px-4 gap-3">
+                        <i class="bi bi-journal-text"></i> Minhas Notas
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 mb-4">
+                <div class="h-100 p-5 text-bg-light border rounded-3">
+                    <i class="bi bi-sticky feature-icon"></i>
+                    <h2>Notas Rápidas</h2>
+                    <p>Um espaço livre para registrar ideias, conteúdos importantes e rascunhos.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="h-100 p-5 text-bg-light border rounded-3">
+                    <i class="bi bi-list-check feature-icon"></i>
+                    <h2>Gerenciamento de Tarefas</h2>
+                    <p>Organize o que precisa ser feito. Crie listas de tarefas, gerencie datas e prazos.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="pt-3 mt-4 text-muted border-top text-center">
+            <p class="mb-1">Desenvolvido por <strong>Murilo Barros</strong></p>
+            <p>
+                <a href="https://github.com/MuriloBarros304/to-do-notes" target="_blank" class="text-decoration-none text-dark">
+                    <i class="bi bi-github"></i> Ver código no GitHub
+                </a>
+            </p>
+            <small>To Do Notes &copy; 2025</small>
+        </footer>
+
+    </div>
+{% endblock content %}

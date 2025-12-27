@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block page_title %}Detalhes da Nota{% endblock page_title %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title display-4">{{ note.title }}</h1>
+            
+            <h6 class="card-subtitle mb-3 text-muted">
+                Criado em: {{ note.created_at|date:"d/m/Y H:i" }}
+            </h6>
+            
+            <hr>
+            
+            <div class="card-text fs-5" style="white-space: pre-wrap;">
+                {{ note.body }}
+            </div>
+            
+            <div class="mt-4">
+                <a href="{% url 'note_list' %}" class="btn btn-secondary">Voltar</a>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
