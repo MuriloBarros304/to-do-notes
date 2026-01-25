@@ -37,13 +37,29 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+                                <button onclick="location.href='{% url 'login' %}'" class="btn btn-outline-light btn-sm">
+                                    Entrar <i class="bi bi-box-arrow-in-right"></i>
+
+                                </button>
                             </li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <main class="container mt-4">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </main>
 
         <main class="container">
             {% block content %}{% endblock content %}

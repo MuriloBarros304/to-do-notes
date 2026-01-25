@@ -7,7 +7,7 @@ from notes.views import NoteDetailView, NoteListView, \
     NoteCreateView, NoteUpdateView, NoteDeleteView
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
-from .views import SignUpView
+from .views import SignUpView, CustomLoginView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -25,7 +25,7 @@ urlpatterns = [
     path("notes/delete/<int:pk>", NoteDeleteView.as_view(), name="note_delete"),
     path('notes/<int:pk>/', NoteDetailView.as_view(), name='note_detail'),
 
-    path('login', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('login', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('signup', SignUpView.as_view(), name='signup'),
 ]
