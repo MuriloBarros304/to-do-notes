@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 from decouple import config, Csv
 from dj_database_url import parse as db_url
 
@@ -143,3 +144,10 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 LOGIN_URL = 'login'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',   # Vermelho
+    messages.SUCCESS: 'success', # Verde
+    messages.WARNING: 'warning', # Amarelo
+    messages.INFO: 'info',       # Azul claro
+}
